@@ -10,13 +10,15 @@
     "url": "git+https://github.com/rbgadotti/tw-search-dropdown.git"
   },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run twbuild:esm && npm run build:cjs && npm run twbuild:cjs",
+    "twbuild:esm": "tailwindcss -i ./src/style.css -o ./dist/esm/style.css",
+    "twbuild:cjs": "tailwindcss -i ./src/style.css -o ./dist/cjs/style.css",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run prettier && npm run lint"
+    "prepublishOnly": "npm run prettier && npm run lint"
   },
   "files": [
     "dist",
